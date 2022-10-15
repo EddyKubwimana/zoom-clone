@@ -1,7 +1,8 @@
 import socket
 import threading
-host = '172.16.8.80'
-port = 5050
+import pandas as pd
+host = '172.16.2.42'
+port = 5090
 FORMAT = 'utf-8'
 SIZE = 1024
 #function that receive and send the message
@@ -10,6 +11,7 @@ def clients(communication_socket , address):
     
     print(f"you are connected to {address}")
     message = communication_socket.recv(SIZE).decode(FORMAT)
+    message.to_csv('studentpresent.csv')
     print("here is your message")
     print(message)
     print("type your message here")
