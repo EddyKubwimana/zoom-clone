@@ -6,7 +6,8 @@ FORMAT = 'utf-8'
 SIZE = 1024
 #function that receive and send the message
 
-def clients(communication_socket, address):
+def clients(communication_socket , address):
+    
     print(f"you are connected to {address}")
     message = communication_socket.recv(SIZE).decode(FORMAT)
     print("here is your message")
@@ -18,11 +19,11 @@ def clients(communication_socket, address):
 # function that initialize the server and listen to connection to the port
 def connection():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((host,port))
+    server.bind((host, port))
     server.listen()
     while True:
         communication_socket, address = server.accept()
-        thread = threading.Thread(target= clients, args= (communication_socket, address))
+        thread = threading.Thread(target = clients, args = (communication_socket, address))
         thread.start()
 #call of connectionf function
 
